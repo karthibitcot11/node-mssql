@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - name: nodejs-container
+        image: nodejsmysql1.azurecr.io/nodejs:$(Build.BuildId)
+        ports:
+        - containerPort: 5000
+        command: ["npm", "run", "start"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: nodejs-app
