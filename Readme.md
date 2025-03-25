@@ -12,3 +12,11 @@ A simple Node.js application that connects to an MS SQL database, retrieves data
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/nodejs-mssql-app.git
+
+2. ## DB
+
+CREATE TABLE Users (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(50) NOT NULL,
+    Email VARCHAR(50) NOT NULL
+);
